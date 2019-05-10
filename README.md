@@ -7,10 +7,29 @@ This repository contains the Unity project that is build and deployed onto the M
 ## Goals
 
 * [x] Establish ROS# Communication to a rosbridge server running on Linux box.
-* [ ] Access camera stream in Unity and send images over ROS#
+* [x] Access camera stream in Unity and send images over ROS#
 * [ ] Receive communication from ROS node with co-ordinates of faces and draw face pose estimations in AR
-
 * [ ] Access Research mode sensor data in Unity
+
+## Building The Project
+
+### Checklist
+
+* Check Hololens IP
+* Check ROS Computer IP
+* Ensure ROS# Connector is connecting to the ROS Computer IP and using UWP mode
+* Ensure MRTK build settings have been applied
+
+### Notes
+
+* There is a significant improvement in responsiveness of the video stream when deploying to the Hololens in Debug or Release mode. Use Release mode for speed!
+
+## Viewing the Camera Stream
+
+Accessing the camera stream is simple. Open rviz on the ROS Computer and subscribe to the `image_transport/compressed` topic.
+
+Current issue with the video stream is that the image is mirrored horizontally.
+
 
 ## Issues
 
