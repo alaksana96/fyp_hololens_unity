@@ -1,6 +1,6 @@
 Metro
 PlayerPath?
-C:/Users/apl11/_fyp/fyp_hololens_unity/App
+C:/Users/apl11/Documents/fyp_hololens_unity/App
 SceneListBegin?
 Assets/Scenes/HoloCamera.unity
 SceneListEnd?
