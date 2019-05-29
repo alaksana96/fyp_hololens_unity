@@ -6,6 +6,9 @@ namespace RosSharp.RosBridgeClient
     [RequireComponent(typeof(RosConnector))]
     public class DetectionAndDirectionSubscriber : Subscriber<Messages.HoloFyp.DetectionAndDirection>
     {
+
+        public DetectionAndDirection receivedMessage;
+
         protected override void Start()
         {
             base.Start();
@@ -13,7 +16,8 @@ namespace RosSharp.RosBridgeClient
 
         protected override void ReceiveMessage(DetectionAndDirection message)
         {
-            Debug.Log("Received Something");
+            //SceneOrganiser.Instance.cursor.GetComponent<Renderer>().material.color = Color.red;
+            receivedMessage = message;
         }
     }
 }

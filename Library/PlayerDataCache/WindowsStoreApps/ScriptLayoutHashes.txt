@@ -2,7 +2,7 @@ Metro
 PlayerPath?
 C:/Users/apl11/Documents/fyp_hololens_unity/App
 SceneListBegin?
-Assets/Scenes/HoloCamera.unity
+Assets/Scenes/ObjDetectionScene.unity
 SceneListEnd?
 08102b0b851d86962e258061e62cf5a9 Assembly-CSharp.dll:RosSharp.RosBridgeClient.JointStatePatcher
 ab86c8456243fdb59d45baddbcc23b95 Assembly-CSharp.dll:HoloToolkit.Unity.SceneLauncher
@@ -243,7 +243,6 @@ fd44862c81636b96bbe6119bf54ea9ea Assembly-CSharp.dll:HoloToolkit.Unity.FadeManag
 bd52750bf9c2990e596a371cb5f1e1f0 Assembly-CSharp.dll:HoloToolkit.Unity.Buttons.ButtonIconProfileTexture
 0318ae68d5b67ee409bdb1aa77ecaaeb Assembly-CSharp.dll:.IndicatorDisplay
 5ae82e53623f955560f0efaeb941a6d8 Assembly-CSharp.dll:RosSharp.Urdf.UrdfJointRevolute
-5c5d415d65c6c63d9be8993f48a9b8c2 Assembly-CSharp.dll:RosSharp.RosBridgeClient.HoloCameraStream
 f895c120a12848b453001b217623c405 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.InteractionInputSource
 01a988905a1e5993ff83a50d06ecea21 Assembly-CSharp.dll:HoloToolkit.Unity.Buttons.ObjectButton
 cb59566908e7dea2735c4ddc46afd3a0 Assembly-CSharp.dll:RosSharp.RosBridgeClient.ImageSubscriber
@@ -423,3 +422,9 @@ d0b49d217619d42ef088778fc9e2d1a0 Assembly-CSharp.dll:RosSharp.RosBridgeClient.Tw
 3c12c2361fa5bc0730290d926ab744b2 Assembly-CSharp.dll:HoloToolkit.Unity.UX.BoundingBoxRig
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.LineBaseEditor
 b88bb6bdff86d27f4ffc632cbbe62e69 Assembly-CSharp.dll:HoloToolkit.Unity.Buttons.CompoundButton
+468bb529daf144756035d755ae417cc7 Assembly-CSharp.dll:RosSharp.RosBridgeClient.DetectionAndDirectionSubscriber
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SpatialMapping
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.GazeCursor
+3a8065ef4b02707fddf10201f9f51a60 Assembly-CSharp.dll:.SceneOrganiser
+a3c106f653d04bdaef6bb4dfee04704b Assembly-CSharp.dll:Assets.Scripts.HololensManager
+5c5d415d65c6c63d9be8993f48a9b8c2 Assembly-CSharp.dll:RosSharp.RosBridgeClient.CompressedImagePublisher
