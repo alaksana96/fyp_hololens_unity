@@ -2,7 +2,7 @@ Metro
 PlayerPath?
 C:/Users/apl11/Documents/test/fyp_hololens_unity/App
 SceneListBegin?
-Assets/Scenes/ObjDetectionScene.unity
+Assets/Scenes/HoloCameraWithHolo.unity
 SceneListEnd?
 08102b0b851d86962e258061e62cf5a9 Assembly-CSharp.dll:RosSharp.RosBridgeClient.JointStatePatcher
 ab86c8456243fdb59d45baddbcc23b95 Assembly-CSharp.dll:HoloToolkit.Unity.SceneLauncher
