@@ -424,13 +424,13 @@
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\FpsDisplay.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Async\AsyncAction.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Cache\AssetCache.cs" />
-    <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Cache\BufferCacheData.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Cache\MaterialCacheData.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Cache\MeshCacheData.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Exceptions.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\Extensions\SchemaExtensions.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\GLTFComponent.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\GLTFSceneImporter.cs" />
+    <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Scripts\GLTFUnityHelpers.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GpuTiming\GpuTiming.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\GpuTiming\GpuTimingCamera.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\HashCodes.cs" />
@@ -453,7 +453,6 @@
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverHandler.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverInBetween.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverMomentumizer.cs" />
-    <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverOrbital.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverRadialView.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\Solvers\SolverSurfaceMagnetism.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\SortingLayerOverride.cs" />
@@ -640,6 +639,7 @@
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisuals.cs" />
     <Compile Include="Assets\Scripts\GazeCursor.cs" />
     <Compile Include="Assets\Scripts\HololensManager.cs" />
+    <Compile Include="Assets\Scripts\ImageManager.cs" />
     <Compile Include="Assets\Scripts\SceneOrganiser.cs" />
     <Compile Include="Assets\Scripts\SpatialMapping.cs" />
     <None Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Shaders\GLTFConstant.cginc" />
@@ -713,16 +713,16 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\HoloToolkit\UX\Shaders\3DTextShader.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity2018-2-18/Editor/Data/PlaybackEngines/MetroSupport/Tools/UnityEngine.AIModule.dll</HintPath>
@@ -920,22 +920,22 @@
       <HintPath>C:/Program Files/Unity2018-2-18/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="HoloLensCameraStream">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/CamStream/Plugins/HoloLensCameraStream.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/CamStream/Plugins/HoloLensCameraStream.dll</HintPath>
     </Reference>
     <Reference Include="GLTFSerialization">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/GLTFSerialization/GLTFSerialization.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/GLTFSerialization/GLTFSerialization.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/JsonNet/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/JsonNet/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RosBridgeClient">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
     </Reference>
     <Reference Include="Urdf">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/Urdf.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/Urdf.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/apl11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

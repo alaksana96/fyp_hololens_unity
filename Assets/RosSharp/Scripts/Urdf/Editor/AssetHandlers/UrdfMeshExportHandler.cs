@@ -111,7 +111,8 @@ namespace RosSharp.Urdf.Editor
 
         private static string GetPrefabPath(GameObject gameObject)
         {
-            return AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(gameObject));
+            //return AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(gameObject));
+            return "";
         } 
     }
 }

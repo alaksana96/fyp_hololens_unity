@@ -366,19 +366,12 @@ namespace HoloToolkit.Unity.InputModule
 #endif
 
             controllerModelGameObject = new GameObject { name = "glTFController" };
-            controllerModelGameObject.transform.Rotate(0, 180, 0);
+            GLTFComponent gltfScript = controllerModelGameObject.AddComponent<GLTFComponent>();
+            gltfScript.GLTFConstant = gltfScript.GLTFStandard = gltfScript.GLTFStandardSpecular = GLTFMaterial.shader;
+            gltfScript.UseStream = true;
+            gltfScript.GLTFStream = new MemoryStream(fileBytes);
 
-            var sceneImporter = new GLTFSceneImporter(
-                "",
-                new MemoryStream(fileBytes, 0, fileBytes.Length, false, true),
-                controllerModelGameObject.transform
-                );
-
-            sceneImporter.SetShaderForMaterialType(GLTFSceneImporter.MaterialType.PbrMetallicRoughness, GLTFMaterial.shader);
-            sceneImporter.SetShaderForMaterialType(GLTFSceneImporter.MaterialType.KHR_materials_pbrSpecularGlossiness, GLTFMaterial.shader);
-            sceneImporter.SetShaderForMaterialType(GLTFSceneImporter.MaterialType.CommonConstant, GLTFMaterial.shader);
-
-            yield return sceneImporter.Load();
+            yield return gltfScript.WaitForModelLoad();
 
             FinishControllerSetup(controllerModelGameObject, source.handedness, GenerateKey(source));
         }

@@ -22,6 +22,11 @@ namespace Assets.Scripts
         public CompressedImagePublisher publisherCameraStream;
         public DetectionAndDirectionSubscriber subscriberDetectionAndDirection;
 
+        private void OnPostRender()
+        {
+            publisherCameraStream.PublishMessage();
+        }
+
         public void Start()
         {
             _spatialCoordinateSystemPtr = UnityEngine.XR.WSA.WorldManager.GetNativeISpatialCoordinateSystemPtr();
@@ -65,10 +70,12 @@ namespace Assets.Scripts
             cameraParams.rotateImage180Degrees = true; //If your image is upside down, remove this line.
             cameraParams.enableHolograms = false;
 
-            UnityEngine.WSA.Application.InvokeOnAppThread(() => {
-                publisherCameraStream.SetResolution(_resolution.width, _resolution.height);
-                publisherCameraStream.InitializeMessage();
-            }, false);
+            publisherCameraStream.SetResolution(_resolution.width, _resolution.height);
+            publisherCameraStream.InitializeMessage();
+
+            //UnityEngine.WSA.Application.InvokeOnAppThread(() => {
+
+            //}, false);
 
             videoCapture.StartVideoModeAsync(cameraParams, OnVideoModeStarted);
         }
@@ -115,6 +122,7 @@ namespace Assets.Scripts
             {
                 publisherCameraStream.SetBytes(_latestImageBytes);
             }, false);
+
         }
     }
 }

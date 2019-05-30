@@ -91,7 +91,7 @@ namespace HoloToolkit.Unity.InputModule
                     Vector3 position;
                     Vector3 forward;
 
-                    if (!sourceState.sourcePose.TryGetPosition(out position, InteractionSourceNode.Pointer))
+                    if (!sourceState.sourcePose.TryGetPosition(out position))
                     {
                         return;
                     }

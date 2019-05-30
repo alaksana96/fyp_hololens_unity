@@ -210,7 +210,7 @@ namespace RosSharp.Urdf
 
         private static Matrix3x3 Quaternion2Matrix(Quaternion quaternion)
         {
-            Quaternion rosQuaternion = Quaternion.Normalize(quaternion);
+            Quaternion rosQuaternion = quaternion;
             float qx = rosQuaternion.x;
             float qy = rosQuaternion.y;
             float qz = rosQuaternion.z;

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System;
 using UnityEngine;
 
 namespace HoloToolkit.Unity
@@ -10,7 +9,6 @@ namespace HoloToolkit.Unity
     /// SolverBodyLock provides a solver that follows the TrackedObject/TargetTransform. Adjusting "LerpTime"
     /// properties changes how quickly the object moves to the TrackedObject/TargetTransform's position.
     /// </summary>
-    [Obsolete("Body Locked Solvers are replaced by Orbital Solvers. Use the YawOnly/CameraAligned orientations and a World Offset to exactly replace SolverBodyLocked.", false)]
     public class SolverBodyLock : Solver
     {
         #region public enums
@@ -39,10 +37,9 @@ namespace HoloToolkit.Unity
         public int TetherAngleSteps = 6;
         #endregion
 
-        private Quaternion desiredRot = Quaternion.identity;
-
         public override void SolverUpdate()
         {
+            Quaternion desiredRot = Quaternion.identity;
 
             if (RotationTether)
             {
@@ -55,9 +52,9 @@ namespace HoloToolkit.Unity
                 {
                     int numSteps = Mathf.RoundToInt(targetYRotation / tetherAngleLimit);
                     tetherYRotation = numSteps * tetherAngleLimit;
-                    desiredRot = Quaternion.Euler(0f, tetherYRotation, 0f);
                 }
 
+                desiredRot = Quaternion.Euler(0f, tetherYRotation, 0f);
             }
 
             Vector3 desiredPos = solverHandler.TransformTarget != null ? solverHandler.TransformTarget.position + (desiredRot * offset) : Vector3.zero;

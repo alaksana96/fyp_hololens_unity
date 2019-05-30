@@ -89,7 +89,8 @@ namespace RosSharp.Urdf.Editor
             if (visualToCopy.childCount == 0) return;
 
             GameObject objectToCopy = visualToCopy.GetChild(0).gameObject;
-            GameObject prefabObject = (GameObject)PrefabUtility.GetCorrespondingObjectFromSource(objectToCopy);
+            //GameObject prefabObject = (GameObject)PrefabUtility.GetCorrespondingObjectFromSource(objectToCopy);
+            GameObject prefabObject = null;
 
             GameObject collisionObject;
             if (prefabObject != null)
