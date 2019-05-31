@@ -27,7 +27,7 @@ public class HologramManager : MonoBehaviour {
 
         mySphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         mySphere.transform.position = new Vector3(0, 0, 1);
-        mySphere.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        mySphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 
 
@@ -53,8 +53,15 @@ public class HologramManager : MonoBehaviour {
 
             Debug.Log($"X: {bbCentreWorld.x} Y: {bbCentreWorld.y} Z: {bbCentreWorld.z}");
 
-
             mySphere.transform.position = bbCentreWorld;
+
+            Vector3 headPosition = Camera.main.transform.position;
+            RaycastHit objHitInfo;
+            Vector3 objDirection = mySphere.transform.position;
+            if(Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
+            {
+                mySphere.transform.position = objHitInfo.point;
+            }
         }
 
 
