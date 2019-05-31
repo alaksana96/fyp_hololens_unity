@@ -179,16 +179,16 @@
     <Compile Include="Assets\RosSharp\Scripts\Urdf\Editor\UrdfComponents\UrdfVisualExtensions.cs" />
     <Compile Include="Assets\RosSharp\Scripts\Urdf\Editor\UrdfComponents\UrdfVisualsExtensions.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity2018-2-18/Editor/Data/PlaybackEngines/MetroSupport/Tools/UnityEngine.AIModule.dll</HintPath>
@@ -431,22 +431,22 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="HoloLensCameraStream">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/CamStream/Plugins/HoloLensCameraStream.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/CamStream/Plugins/HoloLensCameraStream.dll</HintPath>
     </Reference>
     <Reference Include="GLTFSerialization">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/GLTFSerialization/GLTFSerialization.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/GLTFSerialization/GLTFSerialization.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/JsonNet/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/HoloToolkit/Utilities/Scripts/GLTF/Plugins/JsonNet/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RosBridgeClient">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
     </Reference>
     <Reference Include="Urdf">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/Urdf.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/Urdf.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/apl11/Documents/test/fyp_hololens_unity/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/RosSharp/Plugins/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/apl11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

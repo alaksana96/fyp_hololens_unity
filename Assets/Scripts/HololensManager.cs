@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 using HoloLensCameraStream;
 
@@ -22,16 +24,46 @@ namespace Assets.Scripts
         public CompressedImagePublisher publisherCameraStream;
         public DetectionAndDirectionSubscriber subscriberDetectionAndDirection;
 
+        public Matrix4x4 camera2WorldMatrix;
+        public Matrix4x4 projectionMatrix;
+
+        private bool stopVideo;
+        private UnityEngine.XR.WSA.Input.GestureRecognizer _gestureRecognizer;
+
+
         private void OnPostRender()
         {
-            publisherCameraStream.PublishMessage();
+            if (!stopVideo)
+            {
+                publisherCameraStream.PublishMessage();
+            }
         }
+
+        private void Awake()
+        {
+            // Create and set the gesture recognizer
+            _gestureRecognizer = new UnityEngine.XR.WSA.Input.GestureRecognizer();
+            _gestureRecognizer.TappedEvent += (source, tapCount, headRay) => { Debug.Log("Tapped"); StartCoroutine(StopVideoMode()); };
+            _gestureRecognizer.SetRecognizableGestures(UnityEngine.XR.WSA.Input.GestureSettings.Tap);
+            _gestureRecognizer.StartCapturingGestures();
+        }
+
 
         public void Start()
         {
             _spatialCoordinateSystemPtr = UnityEngine.XR.WSA.WorldManager.GetNativeISpatialCoordinateSystemPtr();
 
             CameraStreamHelper.Instance.GetVideoCaptureAsync(OnVideoCaptureCreated);
+        }
+
+        // This coroutine will toggle the video on/off
+        private IEnumerator StopVideoMode()
+        {
+            yield return new WaitForSeconds(0.65f);
+            stopVideo = !stopVideo;
+
+            if (!stopVideo)
+                OnVideoCaptureCreated(_videoCapture);
         }
 
         private void OnDestroy()
@@ -73,10 +105,6 @@ namespace Assets.Scripts
             publisherCameraStream.SetResolution(_resolution.width, _resolution.height);
             publisherCameraStream.InitializeMessage();
 
-            //UnityEngine.WSA.Application.InvokeOnAppThread(() => {
-
-            //}, false);
-
             videoCapture.StartVideoModeAsync(cameraParams, OnVideoModeStarted);
         }
 
@@ -101,21 +129,25 @@ namespace Assets.Scripts
             }
             sample.CopyRawImageDataIntoBuffer(_latestImageBytes);
 
+            float[] holoCameraToWorldMatrix;
+            float[] holoProjectionMatrix;
+
             //If you need to get the cameraToWorld matrix for purposes of compositing you can do it like this
-            float[] cameraToWorldMatrix;
-            if (sample.TryGetCameraToWorldMatrix(out cameraToWorldMatrix) == false)
+            if (sample.TryGetCameraToWorldMatrix(out holoCameraToWorldMatrix) == false)
             {
                 return;
             }
 
             //If you need to get the projection matrix for purposes of compositing you can do it like this
-            float[] projectionMatrix;
-            if (sample.TryGetProjectionMatrix(out projectionMatrix) == false)
+            if (sample.TryGetProjectionMatrix(out holoProjectionMatrix) == false)
             {
                 return;
             }
 
             sample.Dispose();
+
+            camera2WorldMatrix = LocatableCameraUtils.ConvertFloatArrayToMatrix4x4(holoCameraToWorldMatrix);
+            projectionMatrix = LocatableCameraUtils.ConvertFloatArrayToMatrix4x4(holoProjectionMatrix);
 
             //This is where we actually use the image data
             UnityEngine.WSA.Application.InvokeOnAppThread(() =>
@@ -123,6 +155,15 @@ namespace Assets.Scripts
                 publisherCameraStream.SetBytes(_latestImageBytes);
             }, false);
 
+            if(stopVideo)
+            {
+                _videoCapture.StopVideoModeAsync(onVideoModeStopped);
+            }
+        }
+
+        private void onVideoModeStopped(VideoCaptureResult result)
+        {
+            Debug.Log("Video Mode Stopped");
         }
     }
 }

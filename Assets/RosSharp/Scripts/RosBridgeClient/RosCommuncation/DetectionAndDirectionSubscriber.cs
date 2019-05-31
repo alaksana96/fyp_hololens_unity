@@ -16,7 +16,6 @@ namespace RosSharp.RosBridgeClient
 
         protected override void ReceiveMessage(DetectionAndDirection message)
         {
-            //SceneOrganiser.Instance.cursor.GetComponent<Renderer>().material.color = Color.red;
             receivedMessage = message;
         }
     }
