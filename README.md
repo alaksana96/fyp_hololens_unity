@@ -11,6 +11,9 @@ This repository contains the Unity project that is build and deployed onto the M
 * [x] Receive communication from ROS node with co-ordinates of faces and draw face pose estimations in AR
 * [ ] Access Research mode sensor data in Unity
 
+## Media
+[Single Person Direction Indicator](https://www.youtube.com/watch?v=IjQO026pxQg&feature=youtu.be)
+
 ## Building The Project
 
 * Uses this [commit](https://github.com/dwhit/ros-sharp/commit/dc55bbae2bb04b946234f969d634a24ba11959af) of dwhit's repository. Make sure to checkout this version.
