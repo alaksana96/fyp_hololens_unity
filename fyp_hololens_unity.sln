@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{61B5BD86-E5EA-5ED6-BE41-51AE7DCC1EE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fyp_hololens_unity", "Assembly-CSharp.csproj", "{61B5BD86-E5EA-5ED6-BE41-51AE7DCC1EE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{C3D1DBA4-B802-9857-BF0C-7A387D0A2C4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fyp_hololens_unity", "Assembly-CSharp-Editor.csproj", "{C3D1DBA4-B802-9857-BF0C-7A387D0A2C4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

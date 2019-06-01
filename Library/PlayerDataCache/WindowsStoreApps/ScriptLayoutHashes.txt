@@ -427,5 +427,4 @@ e13f7930d2d093d5055e49bba3d885b0 Assembly-CSharp.dll:HoloToolkit.Unity.SpatialMa
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.LineBaseEditor
 b88bb6bdff86d27f4ffc632cbbe62e69 Assembly-CSharp.dll:HoloToolkit.Unity.Buttons.CompoundButton
 b044c4b72751b38e1ec2454cf4f4e15d Assembly-CSharp.dll:Assets.Scripts.HoloCameraManager
-0477b33bdb8b082be3d90ce38ec9976f Assembly-CSharp.dll:RosSharp.RosBridgeClient.RawImagePublisher
-95430985f4b5219ac7e31fe22e576931 Assembly-CSharp.dll:.HologramManager
+9d6fea273b5afb1ac38e180c0b5c27fa Assembly-CSharp.dll:.HologramManager

@@ -17,32 +17,40 @@ public class HologramManager : MonoBehaviour {
 
     public HoloCameraManager holoCameraManager;
 
-    public static HologramManager Instance;
-
-    private GameObject mySphere;
+    public GameObject prefabRedArrow;
+    public GameObject prefabGreenArrow;
 
     private void Awake()
     {
-        Instance = this;
-
-        mySphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        mySphere.transform.position = new Vector3(0, 0, 1);
-        mySphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        this.transform.position = new Vector3(0f, 0f, 0f); 
     }
 
+    private void DestroyGameObjects(string tag)
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        Debug.Log($"{tag} count: {gameObjects.Length}");
+        foreach(GameObject target in gameObjects)
+        {
+            GameObject.Destroy(target, 0.15f);
+        }
+    }
+
+    private void OnPostRender()
+    {
+        DestroyGameObjects("Green Arrow");
+        DestroyGameObjects("Red Arrow");
+    }
 
     private void Update()
     {
         if(subscriberDetectionAndDirection.receivedMessage.detections.Length > 0)
         {
-            Debug.Log("Message Received");
-
             BoundingBoxDirection bbd = subscriberDetectionAndDirection.receivedMessage.detections[0];
 
-            Vector2 bbCentre = new Vector2((bbd.boundingBox.xmin + bbd.boundingBox.xmax) / 2,
-                                           (bbd.boundingBox.ymin + bbd.boundingBox.ymax) / 2);
+            float bbHeight = bbd.boundingBox.ymax - bbd.boundingBox.ymin;
 
-            Debug.Log($"centreX: {bbCentre.x} and centreY: {bbCentre.y}");
+            Vector2 bbCentre = new Vector2((bbd.boundingBox.xmin + bbd.boundingBox.xmax) / 2,
+                                           bbd.boundingBox.ymin + (0.25f * bbHeight));
 
             Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
                 holoCameraManager.camera2WorldMatrix,
@@ -51,20 +59,31 @@ public class HologramManager : MonoBehaviour {
                 bbCentre
                 );
 
-            Debug.Log($"X: {bbCentreWorld.x} Y: {bbCentreWorld.y} Z: {bbCentreWorld.z}");
+            GameObject Arrow;
 
-            mySphere.transform.position = bbCentreWorld;
+            if(bbd.directionTowardsCamera)
+            {
+                Arrow = Instantiate(prefabRedArrow, bbCentreWorld, Quaternion.identity);
+                Arrow.tag = "Red Arrow";
+            }
+            else
+            {
+                Arrow = Instantiate(prefabGreenArrow, bbCentreWorld, Quaternion.identity);
+                Arrow.tag = "Green Arrow";
+            }
 
             Vector3 headPosition = Camera.main.transform.position;
             RaycastHit objHitInfo;
-            Vector3 objDirection = mySphere.transform.position;
-            if(Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
+            Vector3 objDirection = Arrow.transform.position;
+
+            Vector3 gazeDirection = Camera.main.transform.forward;
+
+            if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
             {
-                mySphere.transform.position = objHitInfo.point;
+                Arrow.transform.position = objHitInfo.point;
+                Arrow.transform.rotation = Quaternion.LookRotation(gazeDirection);
             }
         }
-
-
     }
 
 
