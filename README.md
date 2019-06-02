@@ -4,7 +4,7 @@
 
 This repository contains the Unity project that is build and deployed onto the Microsoft Hololens.
 
-![AufarAndTom](https://github.com/alaksana96/fyp_hololens_unity/Media/aufarandtom.png "Aufar And Tom :)")
+![AufarAndTom](https://raw.githubusercontent.com/alaksana96/fyp_hololens_unity/master/Media/aufarandtom.png?token=AEH2N7OIWYLCCQD5TABNS2S47V3PG "Aufar And Tom :)")
 
 ## Goals
 
