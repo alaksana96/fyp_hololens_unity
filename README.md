@@ -4,6 +4,8 @@
 
 This repository contains the Unity project that is build and deployed onto the Microsoft Hololens.
 
+![AufarAndTom](https://github.com/alaksana96/fyp_hololens_unity/Media/aufarandtom.png "Aufar And Tom :)")
+
 ## Goals
 
 * [x] Establish ROS# Communication to a rosbridge server running on Linux box.

@@ -37,7 +37,7 @@ public class HologramManager : MonoBehaviour {
                 float bbHeight = bbd.boundingBox.ymax - bbd.boundingBox.ymin;
 
                 Vector2 bbCentre = new Vector2((bbd.boundingBox.xmin + bbd.boundingBox.xmax) / 2,
-                                               bbd.boundingBox.ymin + (0.4f * bbHeight));
+                                               bbd.boundingBox.ymin + (0.3f * bbHeight));
 
                 // Get World Coordinates of the detection in the image
                 Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
@@ -84,10 +84,12 @@ public class HologramManager : MonoBehaviour {
     private void DestroyGameObjects(string tag)
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
-        Debug.Log($"{tag} count: {gameObjects.Length}");
+
+        //Debug.Log($"{tag} count: {gameObjects.Length}");
+
         foreach (GameObject target in gameObjects)
         {
-            GameObject.Destroy(target, 0.15f);
+            GameObject.Destroy(target, 0.2f);
         }
     }
 
