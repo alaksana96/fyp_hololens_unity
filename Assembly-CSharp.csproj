@@ -595,6 +595,7 @@
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\MessageHandling\LaserScanWriter.cs" />
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\CompressedImagePublisher.cs" />
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\DetectionAndDirectionSubscriber.cs" />
+    <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\DetectionAndIDSubscriber.cs" />
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\GetParamServiceProvider.cs" />
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\ImagePublisher.cs" />
     <Compile Include="Assets\RosSharp\Scripts\RosBridgeClient\RosCommuncation\ImageSubscriber.cs" />

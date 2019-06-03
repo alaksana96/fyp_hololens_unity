@@ -296,10 +296,10 @@ GameObject:
   - component: {fileID: 767375839}
   - component: {fileID: 767375845}
   - component: {fileID: 767375844}
-  - component: {fileID: 767375838}
   - component: {fileID: 767375843}
-  - component: {fileID: 767375846}
+  - component: {fileID: 767375838}
   - component: {fileID: 767375847}
+  - component: {fileID: 767375846}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8432e1148420e4480e5cd180f4b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Topic: /people_tracker/output/detectiondirections
+  Topic: /yact/output/detectiondirections
   TimeStep: 0
 --- !u!81 &767375839
 AudioListener:
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeout: 10
   Protocol: 2
-  RosBridgeServerUrl: ws://129.31.139.196:9090
+  RosBridgeServerUrl: ws://129.31.139.100:9090
 --- !u!114 &767375845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,10 +471,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subscriberDetectionAndDirection: {fileID: 767375838}
+  subscriberDetectionAndID: {fileID: 767375847}
   holoCameraManager: {fileID: 767375845}
   prefabRedArrow: {fileID: 1470299509889990, guid: d498e03399d285347a75b2d1ac74455c,
     type: 2}
   prefabGreenArrow: {fileID: 1825445451670310, guid: 8ab46024b70073d48acf3f791c7dfba8,
+    type: 2}
+  prefabLabelID: {fileID: 1413749482534668, guid: 96a636d69d52c4e498e986dbb124cdea,
     type: 2}
 --- !u!114 &767375847
 MonoBehaviour:
@@ -484,9 +487,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 767375837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81544607c6e62af45b4d23b0300ca763, type: 3}
+  m_Script: {fileID: 11500000, guid: 288a826fe264b9d4e836cdc7911b2c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Topic: /yact/output/detectionids
+  TimeStep: 0
 --- !u!1 &777033701
 GameObject:
   m_ObjectHideFlags: 0
