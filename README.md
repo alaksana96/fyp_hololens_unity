@@ -6,6 +6,7 @@ This repository contains the Unity project that is build and deployed onto the M
 
 ![AufarAndTom](https://raw.githubusercontent.com/alaksana96/fyp_hololens_unity/master/Media/aufarandtom.png?token=AEH2N7OIWYLCCQD5TABNS2S47V3PG "Aufar And Tom :)")
 
+![Boyz](https://raw.githubusercontent.com/alaksana96/fyp_hololens_unity/master/Media/arrowid.gif "Boys in the lab")
 ## Goals
 
 * [x] Establish ROS# Communication to a rosbridge server running on Linux box.
