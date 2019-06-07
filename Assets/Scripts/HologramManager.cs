@@ -22,9 +22,17 @@ public class HologramManager : MonoBehaviour {
     public GameObject prefabGreenArrow;
     public GameObject prefabLabelID;
 
+    private Vector3 startPosition;
+    private Vector3 currPosition;
+
+    private Quaternion startRotation;
+    private Quaternion currRotation;
+
+    
+
     private void Awake()
     {
-        this.transform.position = new Vector3(0f, 0f, 0f); 
+        this.transform.position = new Vector3(0f, 0f, 0f);
     }
 
     /// <summary>
@@ -89,7 +97,7 @@ public class HologramManager : MonoBehaviour {
                     float bbHeight = bbid.boundingBox.ymax - bbid.boundingBox.ymin;
 
                     Vector2 bbCentre = new Vector2((bbid.boundingBox.xmin + bbid.boundingBox.xmax) / 2,
-                                                   bbid.boundingBox.ymin + (0.4f * bbHeight));
+                                                   bbid.boundingBox.ymin + (0.32f * bbHeight));
 
                     // Get World Coordinates of the detection in the image
                     Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
@@ -131,8 +139,6 @@ public class HologramManager : MonoBehaviour {
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
 
-        //Debug.Log($"{tag} count: {gameObjects.Length}");
-
         foreach (GameObject target in gameObjects)
         {
             GameObject.Destroy(target, delay);
@@ -141,8 +147,9 @@ public class HologramManager : MonoBehaviour {
 
     private void OnPostRender()
     {
-        DestroyGameObjects("Green Arrow", 0.2f);
-        DestroyGameObjects("Red Arrow", 0.2f);
+        // From testing, 0.1 second delay before destroying holograms allows it to persist through lag.
+        DestroyGameObjects("Green Arrow", 0.1f);
+        DestroyGameObjects("Red Arrow", 0.1f);
         DestroyGameObjects("ID", 0.1f);
     }
 }

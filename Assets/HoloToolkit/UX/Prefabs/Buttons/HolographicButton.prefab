@@ -402,7 +402,6 @@ MonoBehaviour:
   DisableIcon: 0
   OverrideIcon: 0
   iconName: ObjectCollectionScatter
-  PrefabFromProfile: 0
   iconOverride: {fileID: 0}
   alpha: 1
 --- !u!114 &114549673379926378

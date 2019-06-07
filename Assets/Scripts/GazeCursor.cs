@@ -9,10 +9,8 @@ public class GazeCursor : MonoBehaviour {
         // Grab the mesh renderer that is on the same object as this script.
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
 
-        // Set the cursor reference
-        SceneOrganiser.Instance.cursor = gameObject;
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
-
+        LookingForward.Instance.cursor = gameObject;
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
         // If you wish to change the size of the cursor you can do so here
         gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
     }

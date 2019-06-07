@@ -638,10 +638,10 @@
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfRobot.cs" />
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisual.cs" />
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisuals.cs" />
-    <Compile Include="Assets\Scripts\CollisionDetector.cs" />
     <Compile Include="Assets\Scripts\GazeCursor.cs" />
     <Compile Include="Assets\Scripts\HoloCameraManager.cs" />
     <Compile Include="Assets\Scripts\HologramManager.cs" />
+    <Compile Include="Assets\Scripts\LookingForward.cs" />
     <Compile Include="Assets\Scripts\SceneOrganiser.cs" />
     <Compile Include="Assets\Scripts\SpatialMapping.cs" />
     <None Include="Assets\HoloToolkit\Utilities\Scripts\GLTF\Shaders\GLTFConstant.cginc" />
@@ -914,6 +914,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity2018-1-6/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>C:/Program Files/Unity2018-1-6/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
     </Reference>
     <Reference Include="HoloLensCameraStream">
       <HintPath>C:/Users/apl11/Documents/fyp_hololens_unity/Assets/CamStream/Plugins/HoloLensCameraStream.dll</HintPath>
