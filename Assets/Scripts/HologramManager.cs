@@ -21,6 +21,8 @@ public class HologramManager : MonoBehaviour {
     public GameObject prefabRedArrow;
     public GameObject prefabGreenArrow;
     public GameObject prefabLabelID;
+    public GameObject prefabRedArrowID;
+    public GameObject prefabGreenArrowID;
 
     private Vector3 startPosition;
     private Vector3 currPosition;
@@ -33,18 +35,15 @@ public class HologramManager : MonoBehaviour {
     {
         public BoundingBox boundingBox;
         public int id;
-        public bool direction;
+        public bool directionTowardsCamera;
 
         public BoundingBoxDirectionID(BoundingBox bb, int i, bool dir)
         {
             boundingBox = bb;
             id = i;
-            direction = dir;
+            directionTowardsCamera = dir;
         }
     }
-
-
-
 
     private void Awake()
     {
@@ -96,96 +95,86 @@ public class HologramManager : MonoBehaviour {
             bbDirections.RemoveAt(i);
         }
 
-        // Should be left with bbDirections, bbIds and bbDirIds with new sizes.
         Debug.Log($"after match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
 
-
-        if (subscriberDetectionAndDirection.receivedMessage != null) // Check if yact/people_direction node is active
+        foreach (BoundingBoxDirectionID bbdid in bbDirIds)
         {
-            if (subscriberDetectionAndDirection.receivedMessage.detections.Length > 0)
+            float bbHeight = bbdid.boundingBox.ymax - bbdid.boundingBox.ymin;
+
+            Vector2 bbCentre = new Vector2((bbdid.boundingBox.xmin + bbdid.boundingBox.xmax) / 2,
+                                           bbdid.boundingBox.ymin + (0.3f * bbHeight));
+
+            // Get World Coordinates of the detection in the image
+            Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
+                holoCameraManager.camera2WorldMatrix,
+                holoCameraManager.projectionMatrix,
+                holoCameraManager._resolution,
+                bbCentre
+                );
+
+            GameObject ArrowID;
+
+            if (bbdid.directionTowardsCamera)
             {
-                foreach (BoundingBoxDirection bbd in subscriberDetectionAndDirection.receivedMessage.detections)
-                {
-                    float bbHeight = bbd.boundingBox.ymax - bbd.boundingBox.ymin;
+                ArrowID = Instantiate(prefabRedArrowID, bbCentreWorld, Quaternion.identity);
+                ArrowID.tag = "Red Arrow";
+            }
+            else
+            {
+                ArrowID = Instantiate(prefabGreenArrowID, bbCentreWorld, Quaternion.identity);
+                ArrowID.tag = "Green Arrow";
+            }
 
-                    Vector2 bbCentre = new Vector2((bbd.boundingBox.xmin + bbd.boundingBox.xmax) / 2,
-                                                   bbd.boundingBox.ymin + (0.3f * bbHeight));
+            // Set ID of Detection Direction
+            var tranformArrowID = ArrowID.transform;
+            var textArrowID = tranformArrowID.GetChild(1);
+            textArrowID.GetComponent<TextMesh>().text = bbdid.id.ToString();
 
-                    // Get World Coordinates of the detection in the image
-                    Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
-                        holoCameraManager.camera2WorldMatrix,
-                        holoCameraManager.projectionMatrix,
-                        holoCameraManager._resolution,
-                        bbCentre
-                        );
+            Vector3 headPosition = Camera.main.transform.position;
+            RaycastHit objHitInfo;
+            Vector3 objDirection = ArrowID.transform.position;
 
-                    // Create Direction Arrow Hologram for this detection
-                    GameObject Arrow;
+            Vector3 gazeDirection = Camera.main.transform.forward;
 
-                    if (bbd.directionTowardsCamera)
-                    {
-                        Arrow = Instantiate(prefabRedArrow, bbCentreWorld, Quaternion.identity);
-                        Arrow.tag = "Red Arrow";
-                    } 
-                    else
-                    {
-                        Arrow = Instantiate(prefabGreenArrow, bbCentreWorld, Quaternion.identity);
-                        Arrow.tag = "Green Arrow";
-                    }
-
-                    Vector3 headPosition = Camera.main.transform.position;
-                    RaycastHit objHitInfo;
-                    Vector3 objDirection = Arrow.transform.position;
-
-                    Vector3 gazeDirection = Camera.main.transform.forward;
-
-                    if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
-                    {
-                        Arrow.transform.position = objHitInfo.point;
-                        Arrow.transform.rotation = Quaternion.LookRotation(gazeDirection);
-                    }
-                }
+            if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
+            {
+                ArrowID.transform.position = objHitInfo.point;
+                ArrowID.transform.rotation = Quaternion.LookRotation(gazeDirection);
             }
         }
 
-        if (subscriberDetectionAndID.receivedMessage != null) // Check if yact/people_tracker node is active
+        // Only need to iterate over IDS, since all directions should have been matched
+        foreach (BoundingBoxID bbid in bbIds)
         {
-            if (subscriberDetectionAndID.receivedMessage.detections.Length > 0)
+            float bbHeight = bbid.boundingBox.ymax - bbid.boundingBox.ymin;
+
+            Vector2 bbCentre = new Vector2((bbid.boundingBox.xmin + bbid.boundingBox.xmax) / 2,
+                                           bbid.boundingBox.ymin + (0.32f * bbHeight));
+
+            // Get World Coordinates of the detection in the image
+            Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
+                holoCameraManager.camera2WorldMatrix,
+                holoCameraManager.projectionMatrix,
+                holoCameraManager._resolution,
+                bbCentre
+                );
+
+            // Create Direction Label Hologram for this detection
+            GameObject LabelID = Instantiate(prefabLabelID, bbCentreWorld, Quaternion.identity);
+            LabelID.tag = "ID";
+
+            LabelID.GetComponent<TextMesh>().text = bbid.id.ToString();
+
+            Vector3 headPosition = Camera.main.transform.position;
+            RaycastHit objHitInfo;
+            Vector3 objDirection = LabelID.transform.position;
+
+            Vector3 gazeDirection = Camera.main.transform.forward;
+
+            if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
             {
-                foreach (BoundingBoxID bbid in subscriberDetectionAndID.receivedMessage.detections)
-                {
-                    float bbHeight = bbid.boundingBox.ymax - bbid.boundingBox.ymin;
-
-                    Vector2 bbCentre = new Vector2((bbid.boundingBox.xmin + bbid.boundingBox.xmax) / 2,
-                                                   bbid.boundingBox.ymin + (0.32f * bbHeight));
-
-                    // Get World Coordinates of the detection in the image
-                    Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
-                        holoCameraManager.camera2WorldMatrix,
-                        holoCameraManager.projectionMatrix,
-                        holoCameraManager._resolution,
-                        bbCentre
-                        );
-
-                    // Create Direction Label Hologram for this detection
-                    GameObject LabelID = Instantiate(prefabLabelID, bbCentreWorld, Quaternion.identity);
-                    LabelID.tag = "ID";
-
-                    LabelID.GetComponent<TextMesh>().text = bbid.id.ToString();
-
-
-                    Vector3 headPosition = Camera.main.transform.position;
-                    RaycastHit objHitInfo;
-                    Vector3 objDirection = LabelID.transform.position;
-
-                    Vector3 gazeDirection = Camera.main.transform.forward;
-
-                    if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
-                    {
-                        LabelID.transform.position = objHitInfo.point;
-                        LabelID.transform.rotation = Quaternion.LookRotation(gazeDirection);
-                    }
-                }
+                LabelID.transform.position = objHitInfo.point;
+                LabelID.transform.rotation = Quaternion.LookRotation(gazeDirection);
             }
         }
     }
@@ -225,8 +214,8 @@ public class HologramManager : MonoBehaviour {
     private void OnPostRender()
     {
         // From testing, 0.1 second delay before destroying holograms allows it to persist through lag.
-        DestroyGameObjects("Green Arrow", 0.1f);
-        DestroyGameObjects("Red Arrow", 0.1f);
-        DestroyGameObjects("ID", 0.1f);
+        DestroyGameObjects("Green Arrow", 0.05f);
+        DestroyGameObjects("Red Arrow", 0.05f);
+        DestroyGameObjects("ID", 0.05f);
     }
 }
