@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 using System;
@@ -19,9 +20,28 @@ public class LookingForward : MonoBehaviour {
 
     internal GameObject cursor;
 
+    private Vector3 initialArtaRotation;
+    private float offset;
+
     private void Awake()
     {
         Instance = this;
+        Invoke("CalibrateArtaRotation", 5);
+    }
+
+
+    public void CalibrateArtaRotation()
+    {
+        initialArtaRotation = subscriberOdom.PublishedTransform.rotation.eulerAngles;
+
+        if(initialArtaRotation.y >= 180)
+        {
+            offset = 360 - initialArtaRotation.y;
+        }
+        else
+        {
+            offset = -initialArtaRotation.y;
+        }
     }
 
     // Update is called once per frame
@@ -32,15 +52,17 @@ public class LookingForward : MonoBehaviour {
         Vector3 holoRotation = Camera.main.transform.rotation.eulerAngles;
 
         // Tolerance of hololens looking left and right
-        float tolerance = 20f;
+        float tolerance = 25f;
 
-        float artaRotY = artaRotation.y;
+        float artaRotY = artaRotation.y + offset;
         float holoRotY = holoRotation.y;
 
         float upper = artaRotY + tolerance;
         float lower = artaRotY - tolerance;
 
         float holoRotYWrap = holoRotY;
+
+        //Debug.Log($"artaStart {initialArtaRotation} --- arta {artaRotY} --- holo {holoRotY}");
 
         // Account for wrap around
         if(upper > 360f)
@@ -64,12 +86,12 @@ public class LookingForward : MonoBehaviour {
         if((holoRotYWrap <= upper) && 
            (holoRotYWrap >= lower))
         {
-            Debug.Log("Forward");
+            //Debug.Log("Forward");
             cursor.GetComponent<Renderer>().material.color = Color.green;
         }
         else
         {
-            Debug.Log("Away");
+            //Debug.Log("Away");
             cursor.GetComponent<Renderer>().material.color = Color.red;
         }
     }

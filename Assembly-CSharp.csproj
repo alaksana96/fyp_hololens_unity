@@ -638,6 +638,7 @@
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfRobot.cs" />
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisual.cs" />
     <Compile Include="Assets\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisuals.cs" />
+    <Compile Include="Assets\Scripts\EditModeFunctions.cs" />
     <Compile Include="Assets\Scripts\GazeCursor.cs" />
     <Compile Include="Assets\Scripts\HoloCameraManager.cs" />
     <Compile Include="Assets\Scripts\HologramManager.cs" />
