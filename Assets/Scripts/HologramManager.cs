@@ -29,6 +29,22 @@ public class HologramManager : MonoBehaviour {
     private Quaternion currRotation;
 
     
+    public struct BoundingBoxDirectionID
+    {
+        public BoundingBox boundingBox;
+        public int id;
+        public bool direction;
+
+        public BoundingBoxDirectionID(BoundingBox bb, int i, bool dir)
+        {
+            boundingBox = bb;
+            id = i;
+            direction = dir;
+        }
+    }
+
+
+
 
     private void Awake()
     {
@@ -38,8 +54,52 @@ public class HologramManager : MonoBehaviour {
     /// <summary>
     /// Creates an arrow hologram for every detection received from people_tracker.py
     /// </summary>
+    /// 
+
     private void Update()
     {
+        List<BoundingBoxDirection> bbDirections = new List<BoundingBoxDirection>();
+        List<BoundingBoxID> bbIds = new List<BoundingBoxID>();
+
+        List<BoundingBoxDirectionID> bbDirIds = new List<BoundingBoxDirectionID>(); // For matched detection-ID pairs
+
+        if (subscriberDetectionAndDirection.receivedMessage != null)
+        {
+            bbDirections.AddRange(subscriberDetectionAndDirection.receivedMessage.detections);
+        }
+
+        if (subscriberDetectionAndID.receivedMessage != null)
+        {
+            bbIds.AddRange(subscriberDetectionAndID.receivedMessage.detections);
+        }
+
+        Debug.Log($"--before match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
+
+        // Need to match IDs and Directions if possible
+        for (int i = bbDirections.Count - 1; i >= 0; i--)
+        {
+            for (int j = bbIds.Count - 1; j >= 0; j--)
+            {
+                float iou = IntersectionOverUnion(bbDirections[i].boundingBox, bbIds[j].boundingBox);
+                if(iou > 0.8f)
+                {
+                    // Add to matched BB ID-Direction list
+                    bbDirIds.Add(new BoundingBoxDirectionID(bbIds[j].boundingBox, bbIds[i].id, bbDirections[i].directionTowardsCamera));
+                    
+                    // Bounding box matched, remove BBID from list
+                    bbIds.RemoveAt(j);
+
+                    break;
+                }
+            }
+            // Bounding box matched, remove BBDir from list
+            bbDirections.RemoveAt(i);
+        }
+
+        // Should be left with bbDirections, bbIds and bbDirIds with new sizes.
+        Debug.Log($"after match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
+
+
         if (subscriberDetectionAndDirection.receivedMessage != null) // Check if yact/people_direction node is active
         {
             if (subscriberDetectionAndDirection.receivedMessage.detections.Length > 0)
@@ -66,7 +126,7 @@ public class HologramManager : MonoBehaviour {
                     {
                         Arrow = Instantiate(prefabRedArrow, bbCentreWorld, Quaternion.identity);
                         Arrow.tag = "Red Arrow";
-                    }
+                    } 
                     else
                     {
                         Arrow = Instantiate(prefabGreenArrow, bbCentreWorld, Quaternion.identity);
@@ -128,6 +188,23 @@ public class HologramManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private float IntersectionOverUnion(BoundingBox a, BoundingBox b)
+    {
+        int xmin = Math.Max(a.xmin, b.xmin);
+        int ymin = Math.Max(a.ymin, b.ymin);
+        int xmax = Math.Min(a.xmax, b.xmax);
+        int ymax = Math.Min(a.ymax, b.ymax);
+
+        int interArea = Math.Max(0, xmax - xmin + 1) * Math.Max(0, ymax - ymin + 1);
+
+        int aArea = (a.xmax - a.xmin + 1) * (a.ymax - a.ymin + 1);
+        int bArea = (b.xmax - b.xmin + 1) * (b.ymax - b.ymin + 1);
+
+        float iou = interArea / (float)(aArea + bArea - interArea);
+
+        return iou;
     }
 
     /// <summary>
