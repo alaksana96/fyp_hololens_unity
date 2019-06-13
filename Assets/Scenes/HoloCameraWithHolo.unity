@@ -474,15 +474,11 @@ MonoBehaviour:
   subscriberDetectionAndDirection: {fileID: 767375838}
   subscriberDetectionAndID: {fileID: 767375847}
   holoCameraManager: {fileID: 767375845}
-  prefabRedArrow: {fileID: 1470299509889990, guid: d498e03399d285347a75b2d1ac74455c,
-    type: 2}
-  prefabGreenArrow: {fileID: 1825445451670310, guid: 8ab46024b70073d48acf3f791c7dfba8,
-    type: 2}
   prefabLabelID: {fileID: 1286427548162148, guid: 369abff67aaae9942864fbbdc69fba1c,
     type: 2}
-  prefabRedArrowID: {fileID: 1982582534718736, guid: 1b18f6e4c4f821e46ae4222e76bc37dc,
+  prefabRedArrowID: {fileID: 1555057228020352, guid: cca746f08663f9849bc2c58c0574a0ea,
     type: 2}
-  prefabGreenArrowID: {fileID: 1533772451321698, guid: e65f80c0e43bb0542b55e9bcc6afe4d1,
+  prefabGreenArrowID: {fileID: 1448241639028306, guid: 118656a8540811241a425172d35c45a6,
     type: 2}
 --- !u!114 &767375847
 MonoBehaviour:

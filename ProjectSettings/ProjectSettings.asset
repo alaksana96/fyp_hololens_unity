@@ -137,7 +137,7 @@ PlayerSettings:
       maximumSupportedHeadTracking: 1
     hololens:
       depthFormat: 1
-      depthBufferSharingEnabled: 0
+      depthBufferSharingEnabled: 1
     enable360StereoCapture: 0
     oculus:
       sharedDepthBuffer: 0
