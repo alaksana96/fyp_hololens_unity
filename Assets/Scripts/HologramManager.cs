@@ -18,7 +18,6 @@ public class HologramManager : MonoBehaviour {
 
     public HoloCameraManager holoCameraManager;
 
-    //public GameObject prefabLabelID;
     public GameObject prefabRedArrowID;
     public GameObject prefabGreenArrowID;
 
@@ -69,7 +68,7 @@ public class HologramManager : MonoBehaviour {
             bbIds.AddRange(subscriberDetectionAndID.receivedMessage.detections);
         }
 
-        Debug.Log($"--before match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
+        //Debug.Log($"--before match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
 
         // Need to match IDs and Directions if possible
         for (int i = bbDirections.Count - 1; i >= 0; i--)
@@ -92,7 +91,7 @@ public class HologramManager : MonoBehaviour {
             bbDirections.RemoveAt(i);
         }
 
-        Debug.Log($"after match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
+        //Debug.Log($"after match bbd: {bbDirections.Count}, bbid:{bbIds.Count}, bbdirid:{bbDirIds.Count}");
 
         foreach (BoundingBoxDirectionID bbdid in bbDirIds)
         {
@@ -139,41 +138,6 @@ public class HologramManager : MonoBehaviour {
                 ArrowID.transform.rotation = Quaternion.LookRotation(gazeDirection);
             }
         }
-
-        // Only need to iterate over IDS, since all directions should have been matched
-        //foreach (BoundingBoxID bbid in bbIds)
-        //{
-        //    float bbHeight = bbid.boundingBox.ymax - bbid.boundingBox.ymin;
-
-        //    Vector2 bbCentre = new Vector2((bbid.boundingBox.xmin + bbid.boundingBox.xmax) / 2,
-        //                                   bbid.boundingBox.ymin + (0.32f * bbHeight));
-
-        //    // Get World Coordinates of the detection in the image
-        //    Vector3 bbCentreWorld = LocatableCameraUtils.PixelCoordToWorldCoord(
-        //        holoCameraManager.camera2WorldMatrix,
-        //        holoCameraManager.projectionMatrix,
-        //        holoCameraManager._resolution,
-        //        bbCentre
-        //        );
-
-        //    // Create Direction Label Hologram for this detection
-        //    GameObject LabelID = Instantiate(prefabLabelID, bbCentreWorld, Quaternion.identity);
-        //    LabelID.tag = "ID";
-
-        //    LabelID.GetComponent<TextMesh>().text = bbid.id.ToString();
-
-        //    Vector3 headPosition = Camera.main.transform.position;
-        //    RaycastHit objHitInfo;
-        //    Vector3 objDirection = LabelID.transform.position;
-
-        //    Vector3 gazeDirection = Camera.main.transform.forward;
-
-        //    if (Physics.Raycast(headPosition, objDirection, out objHitInfo, 30.0f, SpatialMapping.PhysicsRaycastMask))
-        //    {
-        //        LabelID.transform.position = objHitInfo.point;
-        //        LabelID.transform.rotation = Quaternion.LookRotation(gazeDirection);
-        //    }
-        //}
     }
 
     private float IntersectionOverUnion(BoundingBox a, BoundingBox b)
@@ -213,6 +177,5 @@ public class HologramManager : MonoBehaviour {
         // From testing, 0.1 second delay before destroying holograms allows it to persist through lag.
         DestroyGameObjects("Green Arrow", 0.25f);
         DestroyGameObjects("Red Arrow", 0.25f);
-        //DestroyGameObjects("ID", 0.25f);
     }
 }

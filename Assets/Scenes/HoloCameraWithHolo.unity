@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 767375846}
   - component: {fileID: 767375849}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Hololens
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,8 +474,6 @@ MonoBehaviour:
   subscriberDetectionAndDirection: {fileID: 767375838}
   subscriberDetectionAndID: {fileID: 767375847}
   holoCameraManager: {fileID: 767375845}
-  prefabLabelID: {fileID: 1286427548162148, guid: 369abff67aaae9942864fbbdc69fba1c,
-    type: 2}
   prefabRedArrowID: {fileID: 1555057228020352, guid: cca746f08663f9849bc2c58c0574a0ea,
     type: 2}
   prefabGreenArrowID: {fileID: 1448241639028306, guid: 118656a8540811241a425172d35c45a6,
@@ -505,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subscriberOdom: {fileID: 1794427725}
+  inFrontOfWheelchair: 0
 --- !u!1 &777033701
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1794427723
 GameObject:
@@ -580,9 +579,13 @@ GameObject:
   - component: {fileID: 1794427724}
   - component: {fileID: 1794427726}
   - component: {fileID: 1794427725}
+  - component: {fileID: 1794427728}
+  - component: {fileID: 1794427729}
+  - component: {fileID: 1794427727}
+  - component: {fileID: 1794427730}
   m_Layer: 0
   m_Name: Arta
-  m_TagString: Untagged
+  m_TagString: Arta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,7 +601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1794427725
 MonoBehaviour:
@@ -628,6 +631,61 @@ MonoBehaviour:
   Timeout: 10
   Protocol: 2
   RosBridgeServerUrl: ws://129.31.139.196:9090
+--- !u!114 &1794427727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794427723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f707aacba8b2d429fcf3f1bfec612c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linearVelocityJoy: {x: 0, y: 0, z: 0}
+  angularVelocityJoy: {x: 0, y: 0, z: 0}
+--- !u!114 &1794427728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794427723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c5dfb51482c2e47b602e8096d45712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /arta/cmd_vel
+  TimeStep: 0
+  linearVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1794427729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794427723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c5dfb51482c2e47b602e8096d45712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /navigation/main_js_cmd_vel
+  TimeStep: 0
+  linearVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1794427730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794427723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606c7a0f1a4d07d4a8d2259a5a5bcfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /holo/joy
 --- !u!1001 &1995004455
 Prefab:
   m_ObjectHideFlags: 0
