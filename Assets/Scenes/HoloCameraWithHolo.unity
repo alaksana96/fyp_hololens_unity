@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeout: 10
   Protocol: 2
-  RosBridgeServerUrl: ws://129.31.139.196:9090
+  RosBridgeServerUrl: ws://129.31.139.100:9090
 --- !u!114 &767375845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeout: 10
   Protocol: 2
-  RosBridgeServerUrl: ws://129.31.139.196:9090
+  RosBridgeServerUrl: ws://146.169.202.187:9090
 --- !u!114 &1794427727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +642,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f707aacba8b2d429fcf3f1bfec612c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cmd_velSubscriber: {fileID: 0}
+  main_js_cmd_velSubscriber: {fileID: 0}
+  holo_joyPublisher: {fileID: 0}
   linearVelocityJoy: {x: 0, y: 0, z: 0}
   angularVelocityJoy: {x: 0, y: 0, z: 0}
 --- !u!114 &1794427728
@@ -657,6 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /arta/cmd_vel
   TimeStep: 0
+  isMessageReceived: 0
   linearVelocity: {x: 0, y: 0, z: 0}
   angularVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1794427729
@@ -672,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /navigation/main_js_cmd_vel
   TimeStep: 0
+  isMessageReceived: 0
   linearVelocity: {x: 0, y: 0, z: 0}
   angularVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1794427730
